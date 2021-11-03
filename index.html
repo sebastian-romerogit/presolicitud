@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Formulario</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!---->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link href="recursos/css/owner.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
@@ -16,7 +24,7 @@
     />
   </head>
   <body>
-    <br/>
+    <br />
     <form>
       <div class="container">
         <div class="row">
@@ -25,39 +33,55 @@
               type="text"
               placeholder="Ingrese su documento"
               class="form-control"
+              pattern="[\d]*"
+              minlength="7" maxlength="10"
+              required
             />
           </div>
           <div class="col-md-3 col-xs-12 mb-3">
             <input
               type="text"
               id="txtNameUser"
+              pattern="[A-Za-z]*"
+              minlength="3" maxlength="30"
               placeholder="Ingrese su primer nombre"
               class="form-control"
+              required
+              title="letras solamente, longitud 5-30"
             />
           </div>
           <div class="col-md-3 col-xs-12 mb-3">
             <input
               type="text"
-              name=""
+              pattern="[A-Za-z]+"
+              minlength="3" maxlength="30"
               placeholder="Ingrese su segundo nombre"
               class="form-control"
+              required
+              title="letras solamente, longitud 5-30"
             />
           </div>
 
           <div class="col-md-3 col-xs-12 mb-3">
             <input
               type="text"
-              name=""
+              pattern="[A-Za-z]+"
+              minlength="3" maxlength="30"
+              title="letras solamente, longitud 5-30"
               placeholder="Ingrese su primer apellido"
               class="form-control"
+              required
             />
           </div>
           <div class="col-md-3 col-xs-12 mb-3">
             <input
               type="text"
-              name=""
+              pattern="[A-Za-z]+"
+              minlength="5" maxlength="30"
+              title="letras solamente, longitud 5-30"
               placeholder="Ingrese su segundo apellido"
               class="form-control"
+              required
             />
           </div>
         </div>
@@ -82,8 +106,19 @@
           </div>
 
           <div class="col-md-3 col-xs-12 mb-3">
-            <div class="input-group date"  id="datepicker" data-date=date() data-date-end-date=date() >
-              <input type="text" class="form-control" placeholder="Ingrese fecha nacimiento" />
+            <div
+              class="input-group date"
+              id="datepicker"
+              data-date="date()"
+              data-date-end-date="date()"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese fecha nacimiento"
+                
+                required
+              />
               <span class="input-group-append">
                 <span class="input-group-text bg-white d-block">
                   <i class="fa fa-calendar"></i>
@@ -95,9 +130,12 @@
           <div class="col-md-3 col-xs-12 mb-3">
             <input
               type="text"
-              name=""
+              pattern="^[1-9][0-9]*$"
+              minlength="1" maxlength="2"
+              title="Rango de 1 a 99"
               placeholder="Ingrese su edad"
               class="form-control"
+              required
             />
           </div>
         </div>
@@ -105,31 +143,45 @@
 
         <div class="row">
           <div class="col-md-4 col-xs-12 mb-3">
+            <div class="input-group">
+              <span class="input-group-text">#</span>
             <input
               type="text"
-              name=""
+              pattern="[3][\d]+"
+              minlength="10" maxlength="12"
               placeholder="Ingrese su celular"
               class="form-control"
+              required
             />
+            </div>
           </div>
 
           <div class="col-md-4 col-xs-12 mb-3">
+            <div class="input-group">
+            <span class="input-group-text">#</span>
             <input
               type="text"
-              name=""
               placeholder="Ingrese su teléfono fijo"
+              pattern="[\d]+"
+              minlength="7"
+              maxlength="10"
               class="form-control"
+              
             />
           </div>
-
+        </div>
           <div class="col-md-4 col-xs-12 mb-3">
+            <div class="input-group">
+            <span class="input-group-text">#</span>
             <input
               type="text"
-              name=""
-              placeholder="Ingrese su # pasaporte"
+              pattern="[a-zA-Z0-9]+"
+              minlength="7" maxlength="9"
+              placeholder="número de pasaporte"
               class="form-control"
             />
           </div>
+        </div>
         </div>
         <hr />
         <!-- ok fila 3-->
@@ -252,6 +304,8 @@
             class="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
+            
+            maxlength="100"
           ></textarea>
         </div>
 
@@ -260,17 +314,14 @@
           <textarea
             class="form-control"
             id="exampleFormControlTextarea1"
+            maxlength="100"
             rows="3"
           ></textarea>
         </div>
 
-        <button
-          type="button"
-          class="col-md-3 btn btn-success"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          
-        >
+        <hr />
+        
+        <button type="button" class="col-md-3 btn btn-success" id="btnShow" onclick="evalName()">
           Guardar
         </button>
 
@@ -284,22 +335,19 @@
         >
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Información</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
+              
               <div id="modalBody" class="modal-body">
-                <input type="text" class="form-control" id="myInput" />
+                
+                <div id="alerType" role="alert">
+
+                  <div>
+                    <h4 id="messageHead" class="alert-heading"></h4>
+                    <p id="messageBody"> </p>
+                  </div>
+                  
               </div>
               <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button> -->
                 <button type="submit" class="btn btn-success">Aceptar</button>
-                <button type="button" class="btn btn-danger">Cancelar</button>
               </div>
             </div>
           </div>
@@ -312,55 +360,63 @@
       <!-- Fin del contenedor-->
     </form>
 
-
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>-->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!---->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--<script src="recursos/js/bootstrap.js"/>
+    <script src="recursos/js/bootstrap.bundle.js"/>
+    Recursos locales--> 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
-    <script src="recursos/datepicker.es.js" charset="UTF-8"></script>
+    <script src="recursos/js/datepicker.es.js" charset="UTF-8"></script>
 
     <script type="text/javascript">
-      var myModal = document.getElementById("exampleModal");
-      var modalBody = document.getElementById("modalBody");
+      
+      var nameUser = document.getElementById("txtNameUser").value;
 
-      function mostrarNombre() {
+
+      /** 
+      ** Función para definir tipo de alerta 
+      ** si el registro se realiza
+      */
+      function evalName() {
+
         var nameUser = document.getElementById("txtNameUser").value;
-        modalBody.innerHTML =
-          "<h5>Hola " +
-          nameUser +
-          ": \n  Confirma por favor la solicitud con radicado: " +
-          "</h5>";
-      }
+        var alerComp = document.getElementById("alerType");
+        var modalB = document.getElementById("messageBody");
+        var modalH = document.getElementById("messageHead");
+        
+        if(nameUser != ""){ //Registro exitoso
+          alerComp.setAttribute("class", "alert alert-success");
+          modalH.innerHTML = "¡Realizado, " + nameUser +"!";
+          modalB.innerHTML = "Solicitud con radicado: 00002021" ;
+          $('#exampleModal').modal('show');
+        }
+        else{
+          alerComp.setAttribute("class", "alert alert-danger");
+          modalH.innerHTML = "¡Fallo!";
+          modalB.innerHTML = "No se pudo realizar la solicitud";
+          $('#exampleModal').modal('show');
+        }
+              
+      };
 
-      myModal.addEventListener("shown.bs.modal", function () {
-        mostrarNombre();
+
+     /**
+      * * Función para definir el calendario a Español
+      * */
+      $(function () {
+        $("#datepicker").datepicker({
+          language: "es",
+        });
       });
 
-      
-
-      $(function () {
-
-        $('#datepicker').datepicker({
-          language: 'es'
-           
-         });
-    });
-
-      
-
- //var calendar = document.getElementById('datepicker');
-
-/**
- *  ! calendar.addEventListener("" ,function(){
- *  !   $('#datepicker').datepicker();
- });*/
-
-      
-</script>
-
+    </script>
   </body>
 </html>
